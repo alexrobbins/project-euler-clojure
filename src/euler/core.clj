@@ -1,6 +1,8 @@
 (ns euler.core
   (:use [clojure.contrib.lazy-seqs :only [primes]]))
 
+; This function was swiped from the labrepl euler solutions file.
+; It is a lot faster than the factorizer I wrote.
 (defn prime-factors
   [n]
   (loop [factors [] n n]
