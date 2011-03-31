@@ -13,6 +13,12 @@
       (let [next-factor (first (filter #(= 0 (rem n %)) primes))]
         (recur (conj factors next-factor) (quot n next-factor))))))
 
+
+
+
+; These are functions that seemed to come up over and over. I didn't go
+; back and put them into earlier problems that could have used them.
+
 ; Lots of the problems have you sum the digits. Dropping this into core.
 (defn sum-of-digits
   [n]
@@ -48,3 +54,8 @@
                           (recur (next counts)
                                  (conj seqs (range (inc (first counts)))))
                           seqs)))))))))
+
+(defn proper-divisors
+  "Since divisors returns a sorted list, we can just drop the last divisor."
+  [n]
+  (butlast (divisors n)))
