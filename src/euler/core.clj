@@ -39,21 +39,24 @@
 ;   2^2 * 5^1 = 20
 (defn divisors
   [n]
-  (let [d-counts (-> n
-                   (prime-factors)
-                   (frequencies))]
-    (let [factors (map first d-counts)
-          counts (map second d-counts)]
-      (sort
-        (map
-          #(reduce * (map (fn [[base exp]] (expt base exp)) %))
-          (map (comp (partial partition 2)(partial interleave factors))
-               (apply cartesian-product
-                      (loop [counts (seq counts) seqs []]
-                        (if counts
-                          (recur (next counts)
-                                 (conj seqs (range (inc (first counts)))))
-                          seqs)))))))))
+  (cond 
+    (= n 0) []
+    true (let [d-counts (-> n
+                          (prime-factors)
+                          (frequencies))]
+           (let [factors (map first d-counts)
+                 counts (map second d-counts)]
+             (sort
+               (map
+                 #(reduce * (map (fn [[base exp]] (expt base exp)) %))
+                 (map (comp (partial partition 2)(partial interleave factors))
+                      (apply cartesian-product
+                             (loop [counts (seq counts) seqs []]
+                               (if counts
+                                 (recur (next counts)
+                                        (conj seqs
+                                              (range (inc (first counts)))))
+                                 seqs))))))))))
 
 (defn proper-divisors
   "Since divisors returns a sorted list, we can just drop the last divisor."
