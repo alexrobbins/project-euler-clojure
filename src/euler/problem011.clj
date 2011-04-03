@@ -1,4 +1,4 @@
-(ns euler.problem11)
+(ns euler.problem011)
 
 ; Specified by problem
 (def initial-grid

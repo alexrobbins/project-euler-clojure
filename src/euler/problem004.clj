@@ -1,4 +1,4 @@
-(ns euler.problem4)
+(ns euler.problem004)
 
 (defn palindrome?
   [n]

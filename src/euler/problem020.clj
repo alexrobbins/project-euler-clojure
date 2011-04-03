@@ -1,4 +1,4 @@
-(ns euler.problem20
+(ns euler.problem020
   (:use [euler.core :only [sum-of-digits]]))
 
 (defn factorial

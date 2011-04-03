@@ -1,4 +1,4 @@
-(ns euler.problem22
+(ns euler.problem022
   (:use [clojure-csv.core :only [parse-csv]]))
 
 (defn alphabetical-value

@@ -1,4 +1,4 @@
-(ns euler.problem15)
+(ns euler.problem015)
 
 ; 1  1  1  1
 ; 1  2  3  4

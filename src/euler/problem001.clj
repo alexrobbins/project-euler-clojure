@@ -1,4 +1,4 @@
-(ns euler.problem1)
+(ns euler.problem001)
 
 (defn multiples
   ([base]

@@ -1,4 +1,4 @@
-(ns euler.problem21
+(ns euler.problem021
   (:use [euler.core :only [divisors]]))
 
 (defn proper-divisors

@@ -1,4 +1,4 @@
-(ns euler.problem18)
+(ns euler.problem018)
 
 ; Triangle defined in the problem
 (def triangle [

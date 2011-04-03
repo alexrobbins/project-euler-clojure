@@ -1,4 +1,4 @@
-(ns euler.problem17)
+(ns euler.problem017)
 ;
 ; Note the #' signs. These work around a bug that causes the internal function
 ; references to continue to reference the non-memoized function. This is

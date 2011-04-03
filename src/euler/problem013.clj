@@ -1,4 +1,4 @@
-(ns euler.problem13)
+(ns euler.problem013)
 
 (def numbers
   [37107287533902102798797998220837590246510135740250

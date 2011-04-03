@@ -1,4 +1,4 @@
-(ns euler.problem24)
+(ns euler.problem024)
 
 ; From wikipedia article on permutation:
 ;

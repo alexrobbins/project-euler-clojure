@@ -1,4 +1,4 @@
-(ns euler.problem9
+(ns euler.problem009
   (:use [clojure.contrib.math :only [expt]]))
 
 ; a < b < c

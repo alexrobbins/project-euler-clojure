@@ -1,4 +1,4 @@
-(ns euler.problem5
+(ns euler.problem005
   (:use [clojure.contrib.lazy-seqs :only [primes]]
         [clojure.contrib.math :only [expt]]))
 

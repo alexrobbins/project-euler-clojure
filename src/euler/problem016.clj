@@ -1,4 +1,4 @@
-(ns euler.problem16
+(ns euler.problem016
   (:use [clojure.contrib.math :only [expt]]))
 
 (defn problem16

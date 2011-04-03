@@ -1,4 +1,4 @@
-(ns euler.problem12
+(ns euler.problem012
   (:use [euler.core :only [prime-factors]]))
 
 (defn triangle-number

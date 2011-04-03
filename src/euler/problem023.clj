@@ -1,4 +1,4 @@
-(ns euler.problem23
+(ns euler.problem023
   (:use [euler.core :only [proper-divisors]]))
 
 (defn proper-number-comparator-maker

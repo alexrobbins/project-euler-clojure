@@ -1,4 +1,4 @@
-(ns euler.problem2)
+(ns euler.problem002)
 
 (defn fibonaccis
   ([]

@@ -1,4 +1,4 @@
-(ns euler.problem6)
+(ns euler.problem006)
 
 (defn sum-of-squares
   [upper-limit]

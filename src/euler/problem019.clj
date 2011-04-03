@@ -1,4 +1,4 @@
-(ns euler.problem19
+(ns euler.problem019
   (:use [clj-time.core]))
 
 (defn get-first-sunday

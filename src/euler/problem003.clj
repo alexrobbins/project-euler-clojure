@@ -9,7 +9,7 @@
 ; After we know the upper and lower limit of the possible answers, brute force
 ; it.
 
-(ns euler.problem3
+(ns euler.problem003
   (:use [clojure.contrib.lazy-seqs :only [primes]]))
 
 ;(defn factor?
