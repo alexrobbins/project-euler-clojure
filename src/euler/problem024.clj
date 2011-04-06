@@ -2,7 +2,7 @@
 
 ; From wikipedia article on permutation:
 ;
-; The following algorithm generates the next permutation lexicographically after a given permutation. It changes the given permutation in-place.
+; The following algorithm generates the next permutation lexicographically after a given permutation.
 ;
 ; a) Find the largest index k such that a[k] < a[k + 1]. If no such index exists, the permutation is the last permutation.
 ;
@@ -33,7 +33,7 @@
 (defn get-largest-l
   [digits]
   (if-let [k (get-largest-k digits)]
-    (let [a-of-k (digits k)]
+    (let [a-of-k ((vec digits) k)]
       (loop [r-digits (reverse digits)]
         (if r-digits
           (if (> (first r-digits) a-of-k)
@@ -59,8 +59,21 @@
       (subvec digits 0 (inc k))
       (reverse (subvec digits (inc k))))))
 
+(defn get-next-lexicographic-permutation
+  [digits]
+    (let [k (get-largest-k digits) l (get-largest-l digits)]
+      (-> digits
+        (swap-k-and-l k l)
+        (reverse-from-k+1-to-end k))))
+
 (defn get-permutations
   [digits]
   (let [digits (sort digits)]
-    (loop [acc []]
-      (; Need a lazy seq here. Maybe re-read that chapter in Programming Clojure
+    (iterate get-next-lexicographic-permutation digits)))
+
+(defn problem24
+  ([] (problem24 [0 1 2 3 4 5 6 7 8 9] 1000000))
+  ([digits n]
+   (take 1
+         (drop (dec n)
+               (get-permutations digits)))))
