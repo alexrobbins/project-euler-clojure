@@ -14,12 +14,12 @@
   ([sum]
      (apply *
             (first
-             (for [a (range 1 (inc sum))
-                   :let [a2 (* a a)]
-                   b (range 1 a)
+             (for [c (range 1 (inc sum))
+                   :let [c2 (* c c)]
+                   b (range 1 c)
                    :let [b2 (* b b)]
-                   c (range 1 b)
+                   a (range 1 b)
                    :when (and (= sum (+ a b c))
-                              (= (+ (* c c) b2)
-                                 a2))]
+                              (= (+ (* a a) b2)
+                                 c2))]
                [a b c])))))
