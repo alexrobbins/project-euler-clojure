@@ -1,16 +1,18 @@
 (ns euler.problem006)
 
-(defn sum-of-squares
-  [upper-limit]
-  (reduce + 0
-          (map #(* % %) (range 1 (inc upper-limit)))))
+(let [square #(* % %)
+      domain #(rest (range (inc %)))]
 
-(defn square-of-sums
-  [upper-limit]
-  (let [sum-of-items (reduce + (range 1 (inc upper-limit)))]
-    (* sum-of-items sum-of-items)))
+  (defn sum-of-squares
+    [items]
+    (reduce + (map square items)))
 
-(defn problem-6
-  ([] (problem-6 100))
-  ([x]
-   (- (square-of-sums x) (sum-of-squares x))))
+  (defn square-of-sums
+    [items]
+    (square (reduce + items)))
+
+  (defn problem-6
+    ([] (problem-6 100))
+    ([limit]
+       (apply - ((juxt square-of-sums sum-of-squares)
+                 (domain limit))))))
