@@ -9,7 +9,7 @@
 ; find (* a b c)
 ;
 
-(defn problem-9                         ; brute forced :)
+(defn problem-9
   ([] (problem-9 1000))
   ([sum]
      (apply *
