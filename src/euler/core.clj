@@ -13,9 +13,6 @@
       (let [next-factor (first (filter #(= 0 (rem n %)) primes))]
         (recur (conj factors next-factor) (quot n next-factor))))))
 
-
-
-
 ; These are functions that seemed to come up over and over. I didn't go
 ; back and put them into earlier problems that could have used them.
 
@@ -62,3 +59,8 @@
   "Since divisors returns a sorted list, we can just drop the last divisor."
   [n]
   (butlast (divisors n)))
+
+(defn divides?
+  "True if n/m has no remainder"
+  [n m]
+  (zero? (rem n m)))
