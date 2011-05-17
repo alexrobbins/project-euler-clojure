@@ -4,4 +4,4 @@
 (defn problem-7
   ([] (problem-7 10001))
   ([n]
-   (first (drop (dec n) primes))))
+   (nth primes (dec n))))

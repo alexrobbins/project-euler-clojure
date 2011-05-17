@@ -8,6 +8,6 @@
 
 (defn euler-2
   ([]
-   (apply +
+   (reduce +
           (filter even?
                   (take-while #(> 4000000 %) (fibonaccis))))))

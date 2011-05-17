@@ -9,7 +9,7 @@
 
 (defn euler-1
   ([]
-   (apply +
+   (reduce +
           (set
             (concat
               (take-while #(> 1000 %) multiples-of-3)
