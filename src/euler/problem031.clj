@@ -1,54 +1,44 @@
 (ns euler.problem031)
 
-; Brute force that is too slow
-;(defn inclusive-range
-;  [bottom top]
-;  (range bottom (inc top)))
-;
-; How to write this as a macro?
-;(defn problem31
-;  ([] (problem31 [1 2 5 10 20 50 100 200] 200))
-;  ([coins goal]
-;   (count
-;     (for 
-;       [ones (inclusive-range 0 (quot goal 1))
-;        twos (inclusive-range 0 (quot goal 2))
-;        fives (inclusive-range 0 (quot goal 5))
-;        tens (inclusive-range 0 (quot goal 10))
-;        twenties (inclusive-range 0 (quot goal 20))
-;        fifties (inclusive-range 0 (quot goal 50))
-;        hundreds (inclusive-range 0 (quot goal 100))
-;        two-hundreds (inclusive-range 0 (quot goal 200))
-;        :when (= goal
-;                 (+ (* ones 1)
-;                    (* twos 2)
-;                    (* fives 5)
-;                    (* tens 10)
-;                    (* twenties 20)
-;                    (* fifties 50)
-;                    (* hundreds 100)
-;                    (* two-hundreds 200)))]
-;       :valid))))
+(defn combinations
+  [coins goal]
+  (cond 
+    (= 0 goal) #{[]}
+    true (set
+           (apply concat
+             (map #(add-coin-to-results-for-value (:current-coin %)
+                                                  (:remaining %)
+                                                  coins)
+                  (valid-coins coins goal))))))
+
+(def combinations (memoize combinations))
+
+(defn add-coin-to-results-for-value
+  "Add coins to the previous results."
+  [coin value coins]
+  (map sort
+       (map #(conj % coin) (combinations coins value))))
 
 (defn valid-coins
+  "Return a seq of valid coins and the amount left after that coin is added."
   [coins goal]
-  (for [coin coins
-        :let [remaining (- goal coin)]
-        :when (<= 0 remaining)] {:remaining remaining, :coin coin}))
+  (filter #(<= 0 (:remaining %))
+    (map #(array-map :remaining (- goal %) :current-coin %) coins)))
 
-(defn bad-problem31 ;does not respect order
-  ([] (bad-problem31 [1 2 5 10 20 50 100 200] 200))
-  ([coins goal]
-   (cond
-     (> 0 goal) 0
-     (zero? goal) 1
-     true (reduce +
-                  (map
-                    #(#'bad-problem31 coins (- goal %))
-                    coins)))))
-(def bad-problem31 (memoize bad-problem31))
+(defn number-of-combinations-for-goal
+  "Gets the last value, but builds a memoization cache by moving up from zero."
+  [coins goal]
+  (last
+    (map
+      #(let [count (count (combinations coins %))]
+         (do
+           (println % ": " count)
+           count))
+      (range 0 (inc goal)))))
 
+; The current solution is still too slow, but it isn't too slow to run. Not
+; going to work on this further since I'm tired of this problem.
 (defn problem31
   ([] (problem31 [1 2 5 10 20 50 100 200] 200))
   ([coins goal]
-   (cond
+   (number-of-combinations-for-goal coins goal)))
