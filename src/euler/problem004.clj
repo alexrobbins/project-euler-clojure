@@ -4,7 +4,7 @@
   [n]
   (= (str n) (apply str (reverse (str n)))))
 
-(defn problem-4-v1
+(defn problem-4
   ([] (problem-4 1000))
   ([n]
    (reduce max
