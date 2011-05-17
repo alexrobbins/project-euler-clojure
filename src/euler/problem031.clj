@@ -1,9 +1,22 @@
 (ns euler.problem031)
 
+(declare combinations)
+
+(defn add-coin-to-results-for-value
+  "Add coins to the previous results."
+  [coin value coins]
+  (map #(merge-with + (array-map coin 1) %) (combinations coins value)))
+
+(defn valid-coins
+  "Return a seq of valid coins and the amount left after that coin is added."
+  [coins goal]
+  (filter #(<= 0 (:remaining %))
+    (map #(array-map :remaining (- goal %) :current-coin %) coins)))
+
 (defn combinations
   [coins goal]
   (cond 
-    (= 0 goal) #{[]}
+    (= 0 goal) #{{}}
     true (set
            (apply concat
              (map #(add-coin-to-results-for-value (:current-coin %)
@@ -12,18 +25,6 @@
                   (valid-coins coins goal))))))
 
 (def combinations (memoize combinations))
-
-(defn add-coin-to-results-for-value
-  "Add coins to the previous results."
-  [coin value coins]
-  (map sort
-       (map #(conj % coin) (combinations coins value))))
-
-(defn valid-coins
-  "Return a seq of valid coins and the amount left after that coin is added."
-  [coins goal]
-  (filter #(<= 0 (:remaining %))
-    (map #(array-map :remaining (- goal %) :current-coin %) coins)))
 
 (defn number-of-combinations-for-goal
   "Gets the last value, but builds a memoization cache by moving up from zero."
